@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ConstanciaMatriculaReporte" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="12345678-1234-1234-1234-123456789012">
+    <parameter name="codigoConstanciaMatricula" class="java.lang.String"/>
+    <parameter name="fechaEmision" class="java.util.Date"/>
+    <parameter name="alumno" class="java.lang.String"/>
+    <title>
+        <band height="50">
+            <staticText>
+                <reportElement x="0" y="0" width="500" height="30"/>
+                <textElement>
+                    <font size="18"/>
+                </textElement>
+                <text><![CDATA[Reporte de Constancia de Matrícula]]></text>
+            </staticText>
+        </band>
+    </title>
+    <detail>
+        <!-- Aumentar la altura de la banda para contener todos los elementos -->
+        <band height="90">
+            <staticText>
+                <reportElement x="0" y="0" width="200" height="30"/>
+                <text><![CDATA[Código Constancia Matrícula:]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="200" y="0" width="300" height="30"/>
+                <textFieldExpression><![CDATA[$P{codigoConstanciaMatricula}]]></textFieldExpression>
+            </textField>
+
+            <staticText>
+                <reportElement x="0" y="30" width="200" height="30"/>
+                <text><![CDATA[Fecha de Emisión:]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="200" y="30" width="300" height="30"/>
+                <textFieldExpression><![CDATA[$P{fechaEmision}]]></textFieldExpression>
+            </textField>
+
+            <staticText>
+                <reportElement x="0" y="60" width="200" height="30"/>
+                <text><![CDATA[Alumno:]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="200" y="60" width="300" height="30"/>
+                <textFieldExpression><![CDATA[$P{alumno}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+</jasperReport>
