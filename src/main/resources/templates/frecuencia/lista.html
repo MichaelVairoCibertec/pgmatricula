@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Frecuencias</title>
+    <meta charset="UTF-8">
+    <!-- Incluimos Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Lista de Frecuencias</h1>
+
+    <!-- Botón para agregar nueva frecuencia -->
+    <div class="d-flex justify-content-end mb-3">
+        <a th:href="@{/}" class="btn btn-secondary mx-2">Volver</a>
+        <a th:href="@{/frecuencias/nuevo}" class="btn btn-success">Agregar Nueva Frecuencia</a>
+    </div>
+
+    <!-- Tabla de frecuencias -->
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Días</th>
+            <th>Tipo</th>
+            <th>Descripción</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="frecuencia : ${frecuencias}">
+            <td th:text="${frecuencia.id_frecuencia}"></td>
+            <td th:text="${frecuencia.dias}"></td>
+            <td th:text="${frecuencia.tipo}"></td>
+            <td th:text="${frecuencia.descripcion}"></td>
+            <td>
+                <a th:href="@{/frecuencias/editar/{id}(id=${frecuencia.id_frecuencia})}" class="btn btn-primary btn-sm">Editar</a>
+                <a th:href="@{/frecuencias/eliminar/{id}(id=${frecuencia.id_frecuencia})}" class="btn btn-danger btn-sm"
+                   onclick="return confirm('¿Estás seguro de eliminar esta frecuencia?');">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Incluimos los scripts de Bootstrap 5 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
