@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ComprobantePagoReporte" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="12345678-1234-1234-1234-123456789012">
+    <parameter name="codigoComprobante" class="java.lang.String"/>
+    <parameter name="montoPagado" class="java.lang.Double"/>
+    <parameter name="fechaPago" class="java.util.Date"/>
+    <parameter name="metodoPago" class="java.lang.String"/>
+    <parameter name="alumno" class="java.lang.String"/>
+    <parameter name="responsableCaja" class="java.lang.String"/>
+    <title>
+        <band height="50">
+            <staticText>
+                <reportElement x="0" y="0" width="500" height="30"/>
+                <textElement>
+                    <font size="18"/>
+                </textElement>
+                <text><![CDATA[Reporte de Comprobante de Pago]]></text>
+            </staticText>
+        </band>
+    </title>
+    <detail>
+        <!-- Aumento de la altura de la banda para contener todos los elementos -->
+        <band height="180">
+            <staticText>
+                <reportElement x="0" y="0" width="200" height="30"/>
+                <text><![CDATA[Código Comprobante:]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="200" y="0" width="300" height="30"/>
+                <textFieldExpression><![CDATA[$P{codigoComprobante}]]></textFieldExpression>
+            </textField>
+
+            <staticText>
+                <reportElement x="0" y="30" width="200" height="30"/>
+                <text><![CDATA[Monto Pagado:]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="200" y="30" width="300" height="30"/>
+                <textFieldExpression><![CDATA[$P{montoPagado}]]></textFieldExpression>
+            </textField>
+
+            <staticText>
+                <reportElement x="0" y="60" width="200" height="30"/>
+                <text><![CDATA[Fecha de Pago:]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="200" y="60" width="300" height="30"/>
+                <textFieldExpression><![CDATA[$P{fechaPago}]]></textFieldExpression>
+            </textField>
+
+            <staticText>
+                <reportElement x="0" y="90" width="200" height="30"/>
+                <text><![CDATA[Método de Pago:]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="200" y="90" width="300" height="30"/>
+                <textFieldExpression><![CDATA[$P{metodoPago}]]></textFieldExpression>
+            </textField>
+
+            <staticText>
+                <reportElement x="0" y="120" width="200" height="30"/>
+                <text><![CDATA[Alumno:]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="200" y="120" width="300" height="30"/>
+                <textFieldExpression><![CDATA[$P{alumno}]]></textFieldExpression>
+            </textField>
+
+            <staticText>
+                <reportElement x="0" y="150" width="200" height="30"/>
+                <text><![CDATA[Responsable de Caja:]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="200" y="150" width="300" height="30"/>
+                <textFieldExpression><![CDATA[$P{responsableCaja}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+</jasperReport>
