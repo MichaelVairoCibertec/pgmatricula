@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Postulantes</title>
+    <meta charset="UTF-8">
+    <!-- Incluimos Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Lista de Postulantes</h1>
+
+    <!-- Botón para agregar nuevo postulante -->
+    <div class="d-flex justify-content-end mb-3">
+        <a th:href="@{/}" class="btn btn-secondary mx-2">Volver</a>
+        <a th:href="@{/postulantes/nuevo}" class="btn btn-success">Agregar Nuevo Postulante</a>
+    </div>
+
+    <!-- Tabla de postulantes -->
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+        <tr>
+            <th>Apellido</th>
+            <th>Nombres</th>
+            <th>Turno Horario</th>
+            <th>Familiar Apoderado</th>
+            <th>Colegio Procedencia</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="postulante : ${postulantes}">
+            <td th:text="${postulante.apellido_paterno + ' ' + postulante.apellido_materno}"></td>
+            <td th:text="${postulante.nombres}"></td>
+            <td th:text="${postulante.turnoHorario != null ? postulante.turnoHorario.turno : 'Sin turno'}"></td>
+            <td th:text="${postulante.familiarApoderado != null ? postulante.familiarApoderado.nombres : 'Sin apoderado'}"></td>
+            <td th:text="${postulante.colegioProcedencia != null ? postulante.colegioProcedencia.nombre_colegio : 'Sin colegio'}"></td>
+            <td>
+                <a th:href="@{/postulantes/editar/{id}(id=${postulante.id_postulante})}" class="btn btn-primary btn-sm">Editar</a>
+                <a th:href="@{/postulantes/eliminar/{id}(id=${postulante.id_postulante})}" class="btn btn-danger btn-sm"
+                   onclick="return confirm('¿Estás seguro de eliminar este postulante?');">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+
+<!-- Incluimos los scripts de Bootstrap 5 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
