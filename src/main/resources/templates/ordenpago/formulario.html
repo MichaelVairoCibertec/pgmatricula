@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Formulario Orden Pago</title>
+  <meta charset="UTF-8">
+  <!-- Incluimos Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+  <h1 class="text-center" th:text="${ordenPago.id_orden_pago} == null ? 'Nueva Orden de Pago' : 'Editar Orden de Pago'"></h1>
+
+  <form th:action="@{/ordenes-pago}" th:object="${ordenPago}" method="post" class="mt-4">
+    <input type="hidden" th:field="*{id_orden_pago}" />
+
+    <div class="mb-3">
+      <label for="nro_orden" class="form-label">Número de Orden:</label>
+      <input type="text" id="nro_orden" th:field="*{nro_orden}" class="form-control" placeholder="Número de Orden" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="fecha_emision" class="form-label">Fecha de Emisión:</label>
+      <input type="date" id="fecha_emision" th:field="*{fecha_emision}" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="monto_total" class="form-label">Monto Total:</label>
+      <input type="number" id="monto_total" th:field="*{monto_total}" class="form-control" placeholder="Monto Total" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="fecha_vencimiento" class="form-label">Fecha de Vencimiento:</label>
+      <input type="date" id="fecha_vencimiento" th:field="*{fecha_vencimiento}" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="observaciones" class="form-label">Observaciones:</label>
+      <input type="text" id="observaciones" th:field="*{observaciones}" class="form-control" placeholder="Observaciones" />
+    </div>
+
+    <div class="mb-3">
+      <label for="alumno" class="form-label">Alumno:</label>
+      <select id="alumno" th:field="*{alumno.id_alumno}" class="form-select">
+        <option th:each="alumno : ${alumnos}" th:value="${alumno.id_alumno}" th:text="${alumno.nombre}"></option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="tesorero" class="form-label">Tesorero:</label>
+      <select id="tesorero" th:field="*{tesorero.id_tesorero}" class="form-select">
+        <option th:each="tesorero : ${tesoreros}" th:value="${tesorero.id_tesorero}" th:text="${tesorero.nombre}"></option>
+      </select>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary w-100">Guardar</button>
+  </form>
+
+  <div class="mt-3">
+    <a th:href="@{/ordenes-pago}" class="btn btn-secondary">Volver a la lista</a>
+  </div>
+</div>
+
+<!-- Incluimos los scripts de Bootstrap 5 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
