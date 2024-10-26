@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Formulario Comprobante Pago</title>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="text-center" th:text="${comprobantePago.id_comprobante_pago} == null ? 'Nuevo Comprobante de Pago' : 'Editar Comprobante de Pago'"></h1>
+
+    <form th:action="@{/comprobantes-pago}" th:object="${comprobantePago}" method="post" class="mt-4">
+        <input type="hidden" th:field="*{id_comprobante_pago}" />
+
+        <div class="mb-3">
+            <label for="codigo_comprobante" class="form-label">Código de Comprobante:</label>
+            <input type="text" id="codigo_comprobante" th:field="*{codigoComprobante}" class="form-control" placeholder="Código de Comprobante" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="monto_pagado" class="form-label">Monto Pagado:</label>
+            <input type="number" id="monto_pagado" th:field="*{monto_pagado}" class="form-control" placeholder="Monto Pagado" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="fecha_pago" class="form-label">Fecha de Pago:</label>
+            <input type="date" id="fecha_pago" th:field="*{fecha_pago}" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="metodo_pago" class="form-label">Método de Pago:</label>
+            <input type="text" id="metodo_pago" th:field="*{metodo_pago}" class="form-control" placeholder="Método de Pago" required />
+        </div>
+
+        <!-- Relación con Alumno -->
+        <div class="mb-3">
+            <label for="alumno" class="form-label">Alumno:</label>
+            <select id="alumno" th:field="*{alumno.id_alumno}" class="form-control">
+                <option th:each="alumno : ${alumnos}" th:value="${alumno.id_alumno}" th:text="${alumno.nombre + ' ' + alumno.apellido}"></option>
+            </select>
+        </div>
+
+        <!-- Relación con Responsable de Caja -->
+        <div class="mb-3">
+            <label for="responsableCaja" class="form-label">Responsable Caja:</label>
+            <select id="responsableCaja" th:field="*{responsableCaja.id_responsable_caja}" class="form-control">
+                <option th:each="responsable : ${responsablesCaja}" th:value="${responsable.id_responsable_caja}" th:text="${responsable.nombres + ' ' + responsable.apellidos}"></option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Guardar</button>
+    </form>
+
+    <div class="mt-3">
+        <a th:href="@{/comprobantes-pago}" class="btn btn-secondary">Volver a la lista</a>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

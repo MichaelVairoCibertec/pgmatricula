@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Lista de Turnos Horario</title>
+  <meta charset="UTF-8">
+  <!-- Incluimos Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Lista de Turnos Horario</h1>
+
+  <!-- Botón para agregar nuevo turno -->
+  <div class="d-flex justify-content-end mb-3">
+    <a th:href="@{/}" class="btn btn-secondary mx-2">Volver</a>
+    <a th:href="@{/turnos-horario/nuevo}" class="btn btn-success">Agregar Nuevo Turno</a>
+  </div>
+
+  <!-- Tabla de turnos horario -->
+  <table class="table table-striped table-bordered">
+    <thead class="table-dark">
+    <tr>
+      <th>Turno</th>
+      <th>Horario Inicio</th>
+      <th>Horario Fin</th>
+      <th>Frecuencia</th>
+      <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="turno : ${turnos}">
+      <td th:text="${turno.turno}"></td>
+      <td th:text="${turno.horario_inicio}"></td>
+      <td th:text="${turno.horario_fin}"></td>
+      <td th:text="${turno.frecuencia.tipo}"></td>
+      <td>
+        <a th:href="@{/turnos-horario/editar/{id}(id=${turno.id_turno_horario})}" class="btn btn-primary btn-sm">Editar</a>
+        <a th:href="@{/turnos-horario/eliminar/{id}(id=${turno.id_turno_horario})}" class="btn btn-danger btn-sm"
+           onclick="return confirm('¿Estás seguro de eliminar este turno horario?');">Eliminar</a>
+      </td>
+    </tr>
+    </tbody>
+
+  </table>
+</div>
+
+<!-- Incluimos los scripts de Bootstrap 5 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

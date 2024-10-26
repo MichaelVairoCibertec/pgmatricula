@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Lista de Comprobantes de Pago</title>
+  <meta charset="UTF-8">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Lista de Comprobantes de Pago</h1>
+
+  <div class="d-flex justify-content-end mb-3">
+    <a th:href="@{/}" class="btn btn-secondary mx-2">Volver</a>
+    <a th:href="@{/comprobantes-pago/nuevo}" class="btn btn-success">Agregar Nuevo Comprobante</a>
+  </div>
+
+  <table class="table table-striped table-bordered">
+    <thead class="table-dark">
+    <tr>
+      <th>Código Comprobante</th>
+      <th>Monto Pagado</th>
+      <th>Fecha Pago</th>
+      <th>Metodo Pago</th>
+      <th>Alumno</th>
+      <th>Responsable Caja</th>
+      <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="comprobante : ${comprobantes}">
+      <td th:text="${comprobante.codigoComprobante}"></td>
+      <td th:text="${comprobante.monto_pagado}"></td>
+      <td th:text="${comprobante.fecha_pago}"></td>
+      <td th:text="${comprobante.metodo_pago}"></td>
+      <td th:text="${comprobante.alumno.nombre}"></td>
+      <td th:text="${comprobante.responsableCaja != null ? comprobante.responsableCaja.nombres : 'Sin responsable'}"></td>
+      <td>
+        <a th:href="@{/comprobantes-pago/editar/{id}(id=${comprobante.id_comprobante_pago})}" class="btn btn-primary btn-sm">Editar</a>
+        <a th:href="@{/comprobantes-pago/eliminar/{id}(id=${comprobante.id_comprobante_pago})}" class="btn btn-danger btn-sm"
+           onclick="return confirm('¿Estás seguro de eliminar este comprobante de pago?');">Eliminar</a>
+      </td>
+    </tr>
+    </tbody>
+
+  </table>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

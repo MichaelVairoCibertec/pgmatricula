@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Lista de Órdenes de Pago</title>
+  <meta charset="UTF-8">
+  <!-- Incluimos Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Lista de Órdenes de Pago</h1>
+
+  <!-- Botón para agregar nueva orden -->
+  <div class="d-flex justify-content-end mb-3">
+    <a th:href="@{/}" class="btn btn-secondary mx-2">Volver</a>
+    <a th:href="@{/ordenes-pago/nuevo}" class="btn btn-success">Agregar Nueva Orden</a>
+  </div>
+
+  <!-- Tabla de órdenes de pago -->
+  <table class="table table-striped table-bordered">
+    <thead class="table-dark">
+    <tr>
+      <th>Número Orden</th>
+      <th>Fecha Emisión</th>
+      <th>Monto Total</th>
+      <th>Fecha Vencimiento</th>
+      <th>Alumno</th>
+      <th>Tesorero</th>
+      <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="orden : ${ordenes}">
+      <td th:text="${orden.nro_orden}"></td>
+      <td th:text="${orden.fecha_emision}"></td>
+      <td th:text="${orden.monto_total}"></td>
+      <td th:text="${orden.fecha_vencimiento}"></td>
+      <td th:text="${orden.alumno.nombre}"></td>
+      <td th:text="${orden.tesorero != null ? orden.tesorero.nombre : 'Sin tesorero'}"></td>
+      <td>
+        <a th:href="@{/ordenes-pago/editar/{id}(id=${orden.id_orden_pago})}" class="btn btn-primary btn-sm">Editar</a>
+        <a th:href="@{/ordenes-pago/eliminar/{id}(id=${orden.id_orden_pago})}" class="btn btn-danger btn-sm"
+           onclick="return confirm('¿Estás seguro de eliminar esta orden de pago?');">Eliminar</a>
+      </td>
+    </tr>
+    </tbody>
+
+  </table>
+</div>
+
+<!-- Incluimos los scripts de Bootstrap 5 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
