@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Matrícula</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .header-container {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .crud-links {
+            list-style-type: none;
+            padding: 0;
+        }
+        .crud-links li {
+            margin-bottom: 20px;
+        }
+        .crud-links .card {
+            text-decoration: none;
+            color: #333;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .crud-links .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .card-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        .card-body {
+            text-align: center;
+        }
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            background-color: #f8f9fa;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header-container">
+    <div>
+        <h1 class="mb-0">Gestión de Matrícula</h1>
+        <h3 class="mb-0" th:text="'Bienvenido, ' + ${session.usuarioLogueado.username}"></h3>
+    </div>
+    <a href="/login/logout" class="btn btn-danger">Cerrar Sesión</a>
+</header>
+
+<!-- Main container -->
+<div class="container mt-5">
+    <div class="row">
+        <!-- Primera columna -->
+        <div class="col-md-4">
+            <ul class="crud-links">
+                <li>
+                    <a href="/vacantes" class="card">
+                        <div class="card-body">
+                            <div class="card-icon">🎓</div>
+                            <h5>Vacantes</h5>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/frecuencias" class="card">
+                        <div class="card-body">
+                            <div class="card-icon">📅</div>
+                            <h5>Frecuencias</h5>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/turnos-horario" class="card">
+                        <div class="card-body">
+                            <div class="card-icon">⏰</div>
+                            <h5>Turnos Horario</h5>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/familiares" class="card">
+                        <div class="card-body">
+                            <div class="card-icon">👨‍👩‍👧‍👦</div>
+                            <h5>Familiares/Apoderados</h5>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Segunda columna -->
+        <div class="col-md-4">
+            <ul class="crud-links">
+                <li>
+                    <a href="/alumnos" class="card">
+                        <div class="card-body">
+                            <div class="card-icon">👨‍🎓</div>
+                            <h5>Alumnos</h5>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/postulantes" class="card">
+                        <div class="card-body">
+                            <div class="card-icon">📝</div>
+                            <h5>Postulantes</h5>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- Tercera columna -->
+        <div class="col-md-4">
+            <ul class="crud-links">
+                <li>
+                    <a href="/constancias-reserva" class="card">
+                        <div class="card-body">
+                            <div class="card-icon">📜</div>
+                            <h5>Constancias de Reserva</h5>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/constancias-matricula" class="card">
+                        <div class="card-body">
+                            <div class="card-icon">📑</div>
+                            <h5>Constancias de Matrícula</h5>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/ordenes-pago" class="card">
+                        <div class="card-body">
+                            <div class="card-icon">💳</div>
+                            <h5>Órdenes de Pago</h5>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/comprobantes-pago" class="card">
+                        <div class="card-body">
+                            <div class="card-icon">💵</div>
+                            <h5>Comprobantes de Pago</h5>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <!-- Botón para Generar Reporte -->
+    <div class="container text-center mt-3 mb-3">
+        <a href="/reporte/generar" class="btn btn-lg btn-info">Generar Reporte</a>
+    </div>
+
+
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <p>© 2024 Gestión de Matrícula. Todos los derechos reservados.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
