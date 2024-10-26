@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Iniciar Sesión</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .row {
+            height: 100vh;
+        }
+
+        .bg-image {
+            background-image: url('/images/fondo-login.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .login-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .login-form .container {
+            max-width: 400px;
+        }
+
+        .login-form h1 {
+            margin-bottom: 30px;
+        }
+
+        .login-form .alert {
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="row">
+    <!-- Columna izquierda con la imagen de fondo -->
+    <div class="col-md-8 bg-image"></div>
+
+    <!-- Columna derecha con el formulario de login -->
+    <div class="col-md-4 login-form">
+        <div class="container">
+            <h1 class="text-center">Iniciar Sesión</h1>
+            <form action="/login" method="post" class="mt-4">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Usuario:</label>
+                    <input type="text" id="username" name="username" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Contraseña:</label>
+                    <input type="password" id="password" name="password" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
+            </form>
+
+            <!-- Mensaje de error si hay -->
+            <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
